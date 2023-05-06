@@ -10,21 +10,25 @@ type ToDo = {
 }
 
 const TodoSect = () => {
+    //array of todos held in state
     const [todos, setTodos] = useState<ToDo[]>([]);
+    //state of the text input for creating a new todo
     const [newTodo, setNewTodo] = useState('');
 
+    //changes the state of the todo object array
     function changeTodo(type:string, id: number, str: string) {
         setTodos((prev) => {
             const temp = [...prev];
             if(type === 'delete'){
                 temp.splice(temp.findIndex((el) => el.id === id), 1);
+                //insert update to firebase if necessary
             } else if (type === 'update') {
                 temp.splice(temp.findIndex((el) => el.id === id), 1, {
                     todo: str,
                     active: true,
                     id: todos.length
                 });
-
+                //insert update to firebase if necessary
             } else if (type === 'undo') {
                 let tempToDo = temp[temp.findIndex((el) => el.id === id)];
                 temp.splice(temp.findIndex((el) => el.id === id), 1, {
@@ -32,6 +36,7 @@ const TodoSect = () => {
                     active: true,
                     id: todos.length
                 });
+                //insert update to firebase if necessary
             } else if (type === 'complete') {
                 let tempToDo = temp[temp.findIndex((el) => el.id === id)];
                 temp.splice(temp.findIndex((el) => el.id === id), 1, {
@@ -39,9 +44,8 @@ const TodoSect = () => {
                     active: false,
                     id: todos.length
                 });
-
+                //insert update to firebase if necessary
             }
-
             return temp;
         })
     }
@@ -79,7 +83,7 @@ const TodoSect = () => {
                                 {
                                     todo: newTodo,
                                     active: true,
-                                    id: prev.length
+                                    id: (prev[0].id + 1)
                                 }
                             );
                             return temp;
