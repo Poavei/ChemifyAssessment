@@ -38,7 +38,7 @@ export default function Home() {
             The delete was also handled by the callback function on the bar component.  It simply deleted the entry of the object in state.
             <br />
             <br />
-            All of the CRUD operations could easily be then reflected on firebase via appropriate functions by adding to the top level function &lsquo;changeTodo&rsquo;, once firebase has been initialised and added to the app.
+            All of the CRUD operations could easily be then reflected on firebase via appropriate functions by adding to the top level function &lsquo;changeTodo&rsquo; (found in todo-sect/index), once firebase has been initialised and added to the app.
         </p>
         <TodoSect />
       </div>
